@@ -121,9 +121,15 @@ node "D:\APP\DSH Desktop\resources\app\node_modules\@deepseek-ai\dsh\lib\bin.js"
 1. 把 `dsh-pet-deepseek-girl` 整个目录复制到
    `$DSH_HOME\profiles\web\node_modules\dsh-pet-deepseek-girl\`。
 2. 编辑 `$DSH_HOME\profiles\web\package.json`：
-   - `dependencies` 增加 `"dsh-pet-deepseek-girl": "0.1.0"`；
+   - `dependencies` 增加 `"dsh-pet-deepseek-girl": "file:<ASCII 绝对路径>"`；
    - `dsh.profile.bundles` 追加 `"dsh-pet-deepseek-girl"`。
 3. 重启 App。
+
+> ⚠️ **路径必须为纯 ASCII**：Windows 下如果插件目录路径含非 ASCII 字符
+> （如中文目录名），Node 解析模块时会损坏路径，导致启动失败
+> （`Cannot find package ...`）。本机建议把插件放到
+> `C:\Users\<用户名>\dsh-pet-deepseek-girl`（纯 ASCII）。改完源码后运行
+> `scripts\sync-live.ps1` 一键同步并重启即可。
 
 ### 方式 C：桌面 App 的插件管理
 

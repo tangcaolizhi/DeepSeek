@@ -16,16 +16,32 @@ const API = `https://api.github.com/repos/${repo}`;
 const ua = { "User-Agent": "dsh-pet-push", Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json" };
 
 async function api(path, method = "GET", body) {
-	const response = await fetch(`${API}${path}`, {
-		method,
-		headers: ua,
-		body: body === void 0 ? void 0 : JSON.stringify(body)
-	});
-	const text = await response.text();
-	let data = null;
-	try { data = text ? JSON.parse(text) : null; } catch { data = text; }
-	if (!response.ok) throw new Error(`${method} ${path} -> ${response.status}: ${text.slice(0, 300)}`);
-	return data;
+	for (let attempt = 1; attempt <= 6; attempt++) {
+		try {
+			const response = await fetch(`${API}${path}`, {
+				method,
+				headers: ua,
+				body: body === void 0 ? void 0 : JSON.stringify(body)
+			});
+			const text = await response.text();
+			let data = null;
+			try { data = text ? JSON.parse(text) : null; } catch { data = text; }
+			if (response.ok) return data;
+			if (response.status >= 500 && attempt < 6) {
+				console.log(`... ${method} ${path} -> ${response.status}（第 ${attempt} 次重试）`);
+				await new Promise((resolve) => setTimeout(resolve, 2500 * attempt));
+				continue;
+			}
+			throw new Error(`${method} ${path} -> ${response.status}: ${text.slice(0, 300)}`);
+		} catch (error) {
+			if (attempt < 6 && !(error instanceof Error && error.message.includes("->"))) {
+				console.log(`... ${method} ${path} 网络错误（第 ${attempt} 次重试）`);
+				await new Promise((resolve) => setTimeout(resolve, 2500 * attempt));
+				continue;
+			}
+			throw error;
+		}
+	}
 }
 
 // —— 收集文件（.gitignore 精简版） ——
@@ -80,14 +96,22 @@ console.log(`blobs 完成 (${entries.length})`);
 const tree = await api("/git/trees", "POST", { tree: entries });
 console.log("tree:", tree.sha);
 
-// —— 建 commit（空仓库 → 无 parents） ——
+// —— 建 commit（父提交 = 当前分支 HEAD；首次推送则无父提交） ——
+let parents = [];
+try {
+	const ref = await api(`/git/ref/heads/${branch}`);
+	parents = [ref.object.sha];
+	console.log("parent:", ref.object.sha);
+} catch {
+	console.log("无父提交（首次推送）");
+}
 const commit = await api("/git/commits", "POST", {
-	message: `dsh-pet-deepseek-girl v0.3.0 — DeepSeek 娘桌宠插件
+	message: `dsh-pet-deepseek-girl — DeepSeek 娘桌宠插件
 
 会话事件驱动状态机（思考/工作/等待/出错/完成）、大肥鱼帧动画、
 余额显示、拖拽/戳戳/摸头交互、设置卡。详见 README.md。`,
 	tree: tree.sha,
-	parents: []
+	parents
 });
 console.log("commit:", commit.sha);
 
@@ -97,8 +121,8 @@ try {
 	console.log(`已创建 refs/heads/${branch}`);
 } catch (error) {
 	if (String(error).includes("already exists")) {
-		await api(`/git/refs/heads/${branch}`, "PATCH", { sha: commit.sha, force: true });
-		console.log(`已强制更新 refs/heads/${branch}`);
+		await api(`/git/refs/heads/${branch}`, "PATCH", { sha: commit.sha });
+		console.log(`已更新 refs/heads/${branch}`);
 	} else {
 		throw error;
 	}
