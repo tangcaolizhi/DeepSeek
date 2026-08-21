@@ -1,0 +1,44 @@
+{
+  "name": "dsh-pet-deepseek-girl",
+  "version": "0.3.0",
+  "description": "DeepSeek 娘桌宠插件：随 Harness 任务状态变化的萌系桌宠（状态气泡、余额显示、自由拖拽、姿态切换、闲置彩蛋）",
+  "private": true,
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "assets",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ]
+    }
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-credentials": "^0.1.0-rc.8",
+    "@deepseek-ai/dsh-host-webserver": "^0.1.0-rc.8",
+    "@deepseek-ai/dsh-launch-environment": "^0.1.0-rc.8",
+    "@deepseek-ai/dsh-settings": "^0.1.0-rc.8",
+    "@deepseek-ai/schemastery": "^3.18.1"
+  }
+}

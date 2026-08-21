@@ -1,0 +1,55 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# dsh-pet-deepseek-girl —— DeepSeek 娘桌宠 的 profile bundle patch
+#
+# 向 web profile 的组合树中插入一个双面行：
+#   · node 半（lib/index.js）—— 会话事件状态机（/api/pet/status）、余额接口
+#     （/api/pet/balance）、配置端点（GET/PATCH .../config）、静态素材路由
+#     （/plugins/dsh-pet-deepseek-girl/assets，含帧动画素材）；
+#   · 浏览器半（lib/client.js）—— 桌宠渲染进 shell.overlay 插槽 + 设置卡。
+#
+# 所有可调参数都在下方 config（即设置命名空间 dsh-pet 的 base 层），
+# 也可在 设置 → 插件 → DeepSeek 娘桌宠 中即时调整（经配置端点 PATCH）。
+# ─────────────────────────────────────────────────────────────────────────────
+- insert:
+    - id: pet-deepseek-girl
+      name: 'dsh-pet-deepseek-girl'
+      inject: [webServer]
+      config:
+        # 启用桌宠（false 时隐藏；设置卡可随时重新开启）
+        enabled: true
+
+        # 闲置超时（秒）：无任务、无交互达到该时长后自动切换休息姿态（蹲坐/趴卧）
+        idleTimeout: 300
+
+        # 任务完成/出错气泡展示时长（毫秒），随后自动消失
+        bubbleDuration: 4000
+
+        # 空闲彩蛋：随机间隔范围（毫秒）与单次停留时长（毫秒）
+        easterEggMinMs: 30000
+        easterEggMaxMs: 90000
+        easterEggDurationMs: 2500
+
+        # 桌宠尺寸（px）
+        size: 150
+
+        # 悬停时播放环视动画
+        hoverLook: true
+
+        # 任务完成后是否查询并展示 API 账户余额（失败自动优雅降级）
+        showBalance: true
+
+        # 是否响应子 Agent 会话（false=只跟随顶层任务）
+        includeSubagents: false
+
+        # 空闲活跃程度：quiet / normal / lively（控制彩蛋频率）
+        activityLevel: normal
+
+        # 余额查询使用的凭证引用：即 credentials 服务 / 环境变量中的名字
+        apiKeyEnv: DEEPSEEK_API_KEY
+
+        # DeepSeek 官方 API 基地址与余额接口路径
+        baseURL: https://api.deepseek.com
+        balancePath: /user/balance
+
+        # 余额请求超时（毫秒），超时/失败均静默降级
+        requestTimeoutMs: 3000

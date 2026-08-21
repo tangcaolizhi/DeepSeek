@@ -1,0 +1,31 @@
+MIT License
+
+Copyright (c) 2026 dsh-pet-deepseek-girl contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+── 形象素材说明 ────────────────────────────────────────────────────────────
+本插件内置形象（assets/pet.svg 及 lib/client.js 中的内嵌兜底版本）为插件
+作者原创绘制，按上方 MIT 许可授权。该形象仅以“DeepSeek 娘”为灵感（鲸鱼
+尾巴元素致敬 DeepSeek 品牌标识），并非 DeepSeek 官方形象，亦非任何第三方
+同人形象。
+
+如需替换为他人创作的同人形象（“DeepSeek 娘”同人图、模型等），请先取得
+作者授权，确认许可允许二次创作与分发，并保留出处署名。替换方法见根目录
+README.md「自定义形象」一节。

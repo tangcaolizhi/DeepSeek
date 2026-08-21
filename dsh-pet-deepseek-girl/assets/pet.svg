@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DeepSeek 娘 桌宠（互联网流行风形象重绘，Original artwork）
+  本文件为插件作者按互联网上流行的 DeepSeek 娘形象特征（深蓝长发、蓝色大眼、
+  DeepSeek 蓝卫衣、鲸鱼伙伴）原创重绘的 SVG，未直接复制任何单一画师图稿，
+  仅借鉴通用视觉特征。MIT 许可。
+
+  结构约定（CSS 姿态系统依赖这些 class，替换素材时请保留或自行调整）：
+    dp-shadow     地面阴影
+    dp-whale      漂浮小鲸鱼伙伴（独立浮动动画）
+    dp-tail       背后鲸尾
+    dp-head       头部整体（face/hair/bangs/brows/eyes/mouth/blush 的包裹层，think/look 姿态整体旋转）
+    dp-bun-l/r    两侧鲸尾发髻
+    dp-hair       长发/后发
+    dp-face       脸部
+    dp-bangs      刘海
+    dp-eye-l/r    大眼睛（look 模式瞳孔偏移）
+    dp-eye-closed 闭眼（趴卧态）
+    dp-brow-l/r   眉毛（think 模式挑眉）
+    dp-mouth      嘴部三态：.dp-mouth-smile / .dp-mouth-open / .dp-mouth-flat
+    dp-blush-l/r  腮红
+    dp-strings    卫衣抽绳（装饰）
+    dp-body       卫衣身体
+    dp-belly      肚皮
+    dp-emblem     胸口鲸鱼 logo
+    dp-arm-l/r    手臂（think/dance/celebrate 姿态旋转）
+    dp-leg-l/r    腿（squat 折叠）
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 165" width="180" height="165">
+  <!-- 地面阴影 -->
+  <ellipse class="dp-shadow" cx="82" cy="152" rx="40" ry="6" fill="#232A4D" opacity="0.14"/>
+
+  <!-- 漂浮小鲸鱼伙伴 -->
+  <g class="dp-whale">
+    <g class="dp-whale-body">
+      <path d="M152 110 C146 100 134 98 128 104 C126 108 128 114 134 117 C128 118 127 122 130 125 C140 130 152 124 154 116 Z" fill="#4D6BFE"/>
+      <ellipse cx="140" cy="115" rx="11" ry="6" fill="#9DB2FF" opacity="0.85"/>
+      <path d="M125 106 L119 100 L118 106 Z" fill="#3A53D4"/>
+      <circle cx="146" cy="107" r="2" fill="#FFFFFF"/>
+      <circle cx="146.6" cy="107.6" r="1" fill="#232A4D"/>
+      <path d="M133 112 Q136 115 139 112" stroke="#232A4D" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    </g>
+    <g class="dp-whale-jet">
+      <path d="M154 104 Q157 99 156 94 Q159 98 160 104 Z" fill="#9DB2FF" opacity="0.7"/>
+    </g>
+  </g>
+
+  <!-- 背后鲸尾 -->
+  <g class="dp-tail">
+    <path d="M120 130 C136 124 145 133 139 145 C133 139 127 141 120 147 Z" fill="#3A53D4"/>
+  </g>
+
+  <!-- 头部整体（姿态旋转作用于此） -->
+  <g class="dp-head">
+    <!-- 后发：深蓝长发兜住头并垂到身体两侧 -->
+    <path class="dp-hair" d="M82 14 C50 14 30 40 34 84 L34 108 C34 130 52 136 68 126 L72 92 L92 92 L96 126 C112 136 130 130 130 108 L130 84 C134 40 114 14 82 14 Z" fill="#232B52"/>
+    <path class="dp-hair-side-l" d="M36 86 L36 104 C36 122 50 128 62 122 L66 94 Z" fill="#232B52"/>
+    <path class="dp-hair-side-r" d="M128 86 L128 104 C128 122 114 128 102 122 L98 94 Z" fill="#232B52"/>
+    <!-- 内层发色高光 -->
+    <path class="dp-hair-glow-l" d="M40 88 L40 102 C40 116 50 120 58 116 L61 96 Z" fill="#4D6BFE" opacity="0.85"/>
+    <path class="dp-hair-glow-r" d="M124 88 L124 102 C124 116 114 120 106 116 L103 96 Z" fill="#4D6BFE" opacity="0.85"/>
+
+    <!-- 两侧鲸尾发髻 -->
+    <g class="dp-bun dp-bun-l">
+      <circle cx="42" cy="34" r="12" fill="#1B2446"/>
+      <path d="M42 26 C37 30 37 37 42 42 C45 39 46 33 42 26 Z" fill="#4D6BFE"/>
+    </g>
+    <g class="dp-bun dp-bun-r">
+      <circle cx="122" cy="34" r="12" fill="#1B2446"/>
+      <path d="M122 26 C127 30 127 37 122 42 C119 39 118 33 122 26 Z" fill="#4D6BFE"/>
+    </g>
+
+    <!-- 脸部 -->
+    <ellipse class="dp-face" cx="82" cy="76" rx="27" ry="28" fill="#FFE9D9"/>
+
+    <!-- 刘海（深蓝 + 蓝色发梢） -->
+    <path class="dp-bangs" d="M56 76 Q56 46 72 45 Q78 54 82 50 Q86 54 92 45 Q108 46 108 76 Q96 62 82 64 Q68 62 56 76 Z" fill="#232B52"/>
+    <path class="dp-bangs-highlight" d="M62 70 Q62 54 74 50 Q78 58 82 54 Q86 58 90 50 Q102 54 102 70 Q92 62 82 63 Q72 62 62 70 Z" fill="#4D6BFE" opacity="0.9"/>
+
+    <!-- 眉毛 -->
+    <path class="dp-brow dp-brow-l" d="M60 64 Q66 60 73 62" stroke="#1B2446" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <path class="dp-brow dp-brow-r" d="M91 62 Q98 60 104 64" stroke="#1B2446" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+
+    <!-- 大眼睛（look 模式整体偏移） -->
+    <g class="dp-eye dp-eye-l">
+      <ellipse cx="68" cy="79" rx="7" ry="9" fill="#2E4BD8"/>
+      <circle cx="65.4" cy="75.2" r="2.6" fill="#FFFFFF"/>
+      <circle cx="71" cy="83.5" r="1.3" fill="#FFFFFF"/>
+    </g>
+    <g class="dp-eye dp-eye-r">
+      <ellipse cx="96" cy="79" rx="7" ry="9" fill="#2E4BD8"/>
+      <circle cx="93.4" cy="75.2" r="2.6" fill="#FFFFFF"/>
+      <circle cx="99" cy="83.5" r="1.3" fill="#FFFFFF"/>
+    </g>
+    <!-- 闭眼（趴卧态） -->
+    <g class="dp-eye-closed">
+      <path d="M60 79 Q68 85 76 79" stroke="#1B2446" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+      <path d="M88 79 Q96 85 104 79" stroke="#1B2446" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    </g>
+
+    <!-- 腮红 -->
+    <ellipse class="dp-blush dp-blush-l" cx="58" cy="91" rx="6.5" ry="3.6" fill="#FFAFC5" opacity="0.6"/>
+    <ellipse class="dp-blush dp-blush-r" cx="106" cy="91" rx="6.5" ry="3.6" fill="#FFAFC5" opacity="0.6"/>
+
+    <!-- 嘴部三态 -->
+    <path class="dp-mouth dp-mouth-smile" d="M76 92 Q82 97 88 92" stroke="#232A4D" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <ellipse class="dp-mouth dp-mouth-open" cx="82" cy="93" rx="4.6" ry="5.4" fill="#7A3B5C"/>
+    <path class="dp-mouth dp-mouth-flat" d="M76 93 L88 93" stroke="#232A4D" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- 卫衣身体 -->
+  <rect class="dp-body" x="50" y="100" width="64" height="48" rx="17" fill="#4D6BFE"/>
+  <path class="dp-body-shade" d="M50 126 Q82 134 114 126 L114 138 Q82 146 50 138 Z" fill="#3A53D4" opacity="0.55"/>
+  <!-- 抽绳 -->
+  <g class="dp-strings">
+    <path d="M76 104 L72 120" stroke="#3A53D4" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <path d="M88 104 L92 120" stroke="#3A53D4" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <circle cx="71.4" cy="121.4" r="2.2" fill="#FFFFFF"/>
+    <circle cx="92.6" cy="121.4" r="2.2" fill="#FFFFFF"/>
+  </g>
+  <!-- 肚皮 -->
+  <rect class="dp-belly" x="68" y="114" width="28" height="26" rx="11" fill="#9DB2FF" opacity="0.9"/>
+  <!-- 胸口鲸鱼 logo -->
+  <g class="dp-emblem" transform="translate(82,126) scale(1.15)">
+    <path d="M0 -6 C -12 0 -14 10 -7 13 C -3.5 9.5 0 8 0 11 C 0 8 3.5 9.5 7 13 C 14 10 12 0 0 -6 Z" fill="#FFFFFF"/>
+  </g>
+
+  <!-- 手臂 -->
+  <g class="dp-arm dp-arm-l">
+    <rect x="38" y="104" width="14" height="32" rx="7" fill="#3A53D4"/>
+    <circle cx="45" cy="137" r="6.5" fill="#FFE9D9"/>
+  </g>
+  <g class="dp-arm dp-arm-r">
+    <rect x="112" y="104" width="14" height="32" rx="7" fill="#3A53D4"/>
+    <circle cx="119" cy="137" r="6.5" fill="#FFE9D9"/>
+  </g>
+
+  <!-- 腿 -->
+  <g class="dp-leg dp-leg-l">
+    <rect x="66" y="142" width="16" height="12" rx="6" fill="#1B2446"/>
+    <circle cx="74" cy="154" r="5.5" fill="#FFE9D9"/>
+  </g>
+  <g class="dp-leg dp-leg-r">
+    <rect x="84" y="142" width="16" height="12" rx="6" fill="#1B2446"/>
+    <circle cx="92" cy="154" r="5.5" fill="#FFE9D9"/>
+  </g>
+</svg>

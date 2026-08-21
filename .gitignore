@@ -1,0 +1,19 @@
+# 依赖与工具（不入库）
+node_modules/
+.npm-cache/
+tools/
+.render/
+
+# 测试夹具（机器相关：需本地 dsh + flat module fallback 才能跑）
+tests/fixture-home/
+
+# 临时/审查目录
+.dafeiyu-inspect/
+.staging/
+*.tgz
+
+# 系统与编辑器
+Thumbs.db
+.DS_Store
+.idea/
+.vscode/
